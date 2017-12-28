@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/nav_top_rated"
+        android:icon="@drawable/ic_icons_favorite"
+        android:title="@string/top_rated_nav_label"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/nav_upcoming"
+        android:icon="@drawable/upcoming"
+        android:title="@string/upcoming_nav_label"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/nav_trending"
+        android:icon="@drawable/trending"
+        android:title="@string/trending_nav_label"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/nav_now_playing"
+        android:icon="@drawable/ic_icons_play"
+        android:title="@string/now_playing_nav_label"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/nav_revenue"
+        android:icon="@drawable/ic_coin_dollar"
+        android:title="@string/revenue_nav_label"
+        app:showAsAction="ifRoom"/>
+</menu>
