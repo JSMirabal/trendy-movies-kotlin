@@ -7,14 +7,14 @@
 
         <variable
             name="self"
-            type="com.japps.trendymovieskotlin.MainActivity" />
+            type="com.japps.trendymovieskotlin.activity.MainActivity" />
     </data>
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/grey300"
-        tools:context="com.japps.trendymovieskotlin.MainActivity">
+        tools:context="com.japps.trendymovieskotlin.activity.MainActivity">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/main_recycler_view"

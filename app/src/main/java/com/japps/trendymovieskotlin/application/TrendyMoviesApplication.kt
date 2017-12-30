@@ -1,4 +1,4 @@
-package com.japps.trendymovieskotlin
+package com.japps.trendymovieskotlin.application
 
 import android.app.Application
 import com.facebook.drawee.backends.pipeline.Fresco
@@ -10,5 +10,10 @@ class  TrendyMoviesApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         Fresco.initialize(this)
+        get = this
+    }
+
+    companion object {
+        lateinit var get: TrendyMoviesApplication
     }
 }

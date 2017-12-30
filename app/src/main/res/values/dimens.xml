@@ -14,4 +14,6 @@
     <dimen name="text_small">14sp</dimen>
     <dimen name="text_medium">18sp</dimen>
     <dimen name="text_large">22sp</dimen>
+    <dimen name="movie_poster_height">230dp</dimen>
+    <dimen name="movie_poster_width">170dp</dimen>
 </resources>
