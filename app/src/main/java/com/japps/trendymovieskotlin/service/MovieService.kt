@@ -1,8 +1,7 @@
 package com.japps.trendymovieskotlin.service
 
 import com.japps.trendymovieskotlin.model.MovieModel
-import com.japps.trendymovieskotlin.util.DateUtil
-import com.japps.trendymovieskotlin.util.MovieListSortingType
+import com.japps.trendymovieskotlin.util.*
 import com.japps.trendymovieskotlin.util.MovieListSortingType.*
 import io.reactivex.Observable
 import retrofit2.http.GET
@@ -11,33 +10,33 @@ import retrofit2.http.QueryMap
 /**
  * Created by jsmirabal on 1/1/2018.
  */
-class MovieService: AbstractService<MovieService.MovieApi>("http://api.themoviedb.org/", MovieApi::class.java){
+class MovieService: AbstractService<MovieService.MovieApi>(MOVIE_DB_API_BASEPATH, MovieApi::class.java){
 
     fun fetchMovieList(sortBy: MovieListSortingType, page: String): Observable<MovieModel.MovieListData>
-            = service.fetchMovieList(buildParams(sortBy, page))
+            = service.fetchMovieList(buildMovieListParams(sortBy, page))
 
-    private fun buildParams(sortBy: MovieListSortingType, page: String): MutableMap<String, String> {
+    private fun buildMovieListParams(sortBy: MovieListSortingType, page: String): MutableMap<String, String> {
         val paramsMap: MutableMap<String, String> = mutableMapOf()
-        paramsMap["api_key"] = API_KEY
-        paramsMap["page"] = page
+        paramsMap[KEY_API] = MOVIE_DB_API_KEY
+        paramsMap[KEY_PAGE] = page
 
         when(sortBy) {
-            POPULARITY -> paramsMap["sort_by"] = "popularity.desc"
-            REVENUE -> paramsMap["sort_by"] = "revenue.desc"
+            POPULARITY -> paramsMap[KEY_SORT_BY] = "popularity.desc"
+            REVENUE -> paramsMap[KEY_SORT_BY] = "revenue.desc"
             RATING -> {
-                paramsMap["sort_by"] = "vote_average.desc"
-                paramsMap["vote_count.gte"] = "150"
+                paramsMap[KEY_SORT_BY] = "vote_average.desc"
+                paramsMap[KEY_VOTE_COUNT_GTE] = "150"
             }
             UPCOMING -> {
-                paramsMap["sort_by"] = "primary_release_date.asc"
-                paramsMap["vote_count.gte"] = "10"
-                paramsMap["primary_release_date.gte"] = DateUtil.getFormattedCurrentDate("yyyy-MM-dd")
+                paramsMap[KEY_SORT_BY] = "primary_release_date.asc"
+                paramsMap[KEY_VOTE_COUNT_GTE] = "10"
+                paramsMap[KEY_PRIMARY_RELEASE_DATE_GTE] = DateUtil.getFormattedCurrentDate(DATE_PATTERN)
             }
             NOW_PLAYING -> {
-                paramsMap["sort_by"] = "popularity.desc"
-                paramsMap["vote_count.gte"] = "10"
-                paramsMap["primary_release_date.gte"] = DateUtil.getDateFrom60days("yyyy-MM-dd")
-                paramsMap["primary_release_date.lte"] = DateUtil.getFormattedCurrentDate("yyyy-MM-dd")
+                paramsMap[KEY_SORT_BY] = "popularity.desc"
+                paramsMap[KEY_VOTE_COUNT_GTE] = "10"
+                paramsMap[KEY_PRIMARY_RELEASE_DATE_GTE] = DateUtil.getDateFrom60days(DATE_PATTERN)
+                paramsMap[KEY_PRIMARY_RELEASE_DATE_LTE] = DateUtil.getFormattedCurrentDate(DATE_PATTERN)
             }
         }
 

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="self"
             type="com.japps.trendymovieskotlin.activity.MainActivity" />
