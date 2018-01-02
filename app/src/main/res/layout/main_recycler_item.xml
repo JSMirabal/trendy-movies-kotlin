@@ -2,19 +2,19 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="@dimen/movie_poster_height"
-    android:layout_width="@dimen/movie_poster_width">
+    android:layout_width="match_parent">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
             android:id="@+id/poster_view"
             android:layout_width="@dimen/size_none"
             android:layout_height="@dimen/size_none"
             android:adjustViewBounds="true"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:scaleType="fitXY"
+            app:actualImageScaleType="fitXY"
             app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -23,17 +23,18 @@
         <android.support.constraint.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/size_large"
-            android:layout_margin="@dimen/size_tiny"
+            android:layout_height="@dimen/movie_poster_header_height"
             android:orientation="horizontal"
+            android:paddingStart="@dimen/size_small"
+            android:paddingEnd="@dimen/size_small"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <ImageView
-                android:id="@+id/trending_image_view"
+                android:id="@+id/popularity_image_view"
                 android:layout_width="@dimen/size_medium"
                 android:layout_height="@dimen/size_none"
                 android:src="@drawable/trending"
-                app:layout_constraintBottom_toTopOf="@+id/trending_text_view"
+                app:layout_constraintBottom_toTopOf="@+id/popularity_text_view"
                 app:layout_constraintEnd_toStartOf="@+id/date_text_view"
                 app:layout_constraintHorizontal_chainStyle="spread_inside"
                 app:layout_constraintStart_toStartOf="parent"
@@ -41,17 +42,16 @@
                 app:layout_constraintVertical_chainStyle="spread" />
 
             <TextView
-                android:id="@+id/trending_text_view"
+                android:id="@+id/popularity_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/size_none"
                 android:fontFamily="sans-serif-light"
-                android:text="15"
                 android:textSize="@dimen/text_small"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/date_text_view"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/trending_image_view" />
+                app:layout_constraintTop_toBottomOf="@+id/popularity_image_view" />
 
             <TextView
                 android:id="@+id/date_text_view"
@@ -59,12 +59,11 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-condensed"
                 android:gravity="center_horizontal"
-                android:text="2014"
                 android:textAppearance="?android:textAppearanceSmall"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/rating_text_view"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/trending_image_view"
+                app:layout_constraintStart_toEndOf="@+id/popularity_image_view"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
@@ -83,7 +82,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/size_none"
                 android:fontFamily="sans-serif-light"
-                android:text="4.5"
                 android:textSize="@dimen/text_small"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
