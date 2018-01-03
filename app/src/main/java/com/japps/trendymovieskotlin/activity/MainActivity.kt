@@ -10,7 +10,7 @@ import com.japps.trendymovieskotlin.R
 import com.japps.trendymovieskotlin.adapter.MainRecyclerAdapter
 import com.japps.trendymovieskotlin.databinding.ActivityMainBinding
 import com.japps.trendymovieskotlin.decoration.ItemOffsetDecoration
-import com.japps.trendymovieskotlin.model.MovieModel
+import com.japps.trendymovieskotlin.model.MovieViewState
 import com.japps.trendymovieskotlin.service.MovieService
 import com.japps.trendymovieskotlin.util.MovieListSortingType
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                 )
     }
 
-    private fun setupRecycler(movieList: MovieModel.MovieListData) {
+    private fun setupRecycler(movieList: MovieViewState.MovieListData) {
         mAdapter = MainRecyclerAdapter(movieList)
         mBinding.mainRecyclerView.layoutManager = GridLayoutManager(this, 2)
         mBinding.mainRecyclerView.adapter = mAdapter

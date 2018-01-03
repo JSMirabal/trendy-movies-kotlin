@@ -8,14 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.japps.trendymovieskotlin.R
 import com.japps.trendymovieskotlin.databinding.MainRecyclerItemBinding
-import com.japps.trendymovieskotlin.model.MovieModel
+import com.japps.trendymovieskotlin.model.MovieViewState
 import com.japps.trendymovieskotlin.util.*
 
 
 /**
  * Created by jsmirabal on 12/29/2017.
  */
-class MainRecyclerAdapter(private var movieListData: MovieModel.MovieListData) : Adapter<MainRecyclerAdapter.ViewHolder>() {
+class MainRecyclerAdapter(private var movieListData: MovieViewState.MovieListData) : Adapter<MainRecyclerAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val movieData = movieListData.movies[position]
@@ -31,7 +31,7 @@ class MainRecyclerAdapter(private var movieListData: MovieModel.MovieListData) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
             = ViewHolder(parent.inflate(R.layout.main_recycler_item))
 
-    fun updateItems(newList: MovieModel.MovieListData) {
+    fun updateItems(newList: MovieViewState.MovieListData) {
         DiffUtil.calculateDiff(MoviesDiffUtil(movieListData, newList), true)
                 .dispatchUpdatesTo(this)
         movieListData = newList
@@ -41,7 +41,7 @@ class MainRecyclerAdapter(private var movieListData: MovieModel.MovieListData) :
         var mBinding: MainRecyclerItemBinding = MainRecyclerItemBinding.bind(itemView)
     }
 
-    class MoviesDiffUtil(private var oldList: MovieModel.MovieListData, private var newList: MovieModel.MovieListData): DiffUtil.Callback() {
+    class MoviesDiffUtil(private var oldList: MovieViewState.MovieListData, private var newList: MovieViewState.MovieListData): DiffUtil.Callback() {
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
             return oldList.movies[oldItemPosition].id == newList.movies[newItemPosition].id
         }

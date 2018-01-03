@@ -1,6 +1,6 @@
 package com.japps.trendymovieskotlin.service
 
-import com.japps.trendymovieskotlin.model.MovieModel
+import com.japps.trendymovieskotlin.model.MovieViewState
 import com.japps.trendymovieskotlin.util.*
 import com.japps.trendymovieskotlin.util.MovieListSortingType.*
 import io.reactivex.Observable
@@ -12,7 +12,7 @@ import retrofit2.http.QueryMap
  */
 class MovieService: AbstractService<MovieService.MovieApi>(MOVIE_DB_API_BASEPATH, MovieApi::class.java){
 
-    fun fetchMovieList(sortBy: MovieListSortingType, page: String): Observable<MovieModel.MovieListData>
+    fun fetchMovieList(sortBy: MovieListSortingType, page: String): Observable<MovieViewState.MovieListData>
             = service.fetchMovieList(buildMovieListParams(sortBy, page))
 
     private fun buildMovieListParams(sortBy: MovieListSortingType, page: String): MutableMap<String, String> {
@@ -47,6 +47,6 @@ class MovieService: AbstractService<MovieService.MovieApi>(MOVIE_DB_API_BASEPATH
         @GET("3/discover/movie")
         fun fetchMovieList(
                 @QueryMap params: MutableMap<String, String>
-        ): Observable<MovieModel.MovieListData>
+        ): Observable<MovieViewState.MovieListData>
     }
 }
